@@ -40,13 +40,78 @@ input[type='submit']{
   margin: auto;
   max-width: 600px;
   width: 95%;
+  
 }
 
-.App h1:before {
-  content: '💭';
-  margin-right: 0.5em;
+.App header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.header-icons h1 {
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.icons-only{
+  margin-top: .5rem;
+  font-size: larger;
+}
+
+nav.nav-container {
+  display: flex;
+  justify-content: center; 
+  padding: .5em;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: .5em;
+  border: 2px solid #151313; 
+  border-radius: 20px;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav a {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: none !important;
+  color: #333; 
+  font-weight: bold;
+}
+
+nav a.active {
+  color:#6550e1;
+}
+
+nav a:hover {
+  color: #75adfb;
+}
+
+nav .icon {
+  display: none; 
+}
+
+nav a.active .icon {
+  display: inline-block; 
+  color:#6550e1;
+}
 
 .AddThoughtForm {
   display: flex;
@@ -56,7 +121,7 @@ input[type='submit']{
 .AddThoughtForm input {
   padding: 1.5rem;
   border: 1px solid #666;
-  border-radius: 3px;
+  border-radius: 20px;
 }
 
 .AddThoughtForm input[type='text'] {
@@ -69,14 +134,17 @@ input[type='submit']{
   padding: 0;
 }
 
-.Thought {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 3px;
+.Thought-whole{
+  border:1px solid black;
+  border-radius: 15px;
+  border-style: inset;
+  margin-bottom: 5px;
+  background-color: rgb(200, 244, 230)
 }
 
+
 .Thought .remove-button {
-  font-size: 80%;
+  font-size: 70%;
   float: right;
   border: 0;
   border-radius: 3px;
@@ -84,6 +152,78 @@ input[type='submit']{
 }
 
 .Thought .remove-button:hover {
-  color: #fff;
-  background-color: #000;
+  color: rgb(246, 109, 109);
 }
+.text{
+  padding-left: 10px;
+  font-size:medium;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.clear-all-button {
+  float: right;
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  background-color: #f87d7d;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.clear-all-button:hover {
+  background-color: #ff1a1a;
+}
+
+.checkbox {
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+.circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; /* Adjust size as needed */
+  height: 24px; /* Adjust size as needed */
+  border-radius: 50%;
+  border: 1px solid #055016; /* Border color */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+
+
+.circle svg {
+  font-size: 1em;
+  color: #0aaf31;
+}
+
+.completed .text {
+  text-decoration: line-through;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #000;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+

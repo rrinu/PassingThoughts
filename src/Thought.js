@@ -1,30 +1,55 @@
-import React, {useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faCheck } from '@fortawesome/free-solid-svg-icons';
 
-export function Thought(props) {
-  const { thought, removeThought } = props;
+const Thought = ({ thought, removeThought }) => {
+  const [completed, setCompleted] = useState(false);
 
   const handleRemoveClick = () => {
     removeThought(thought.id);
   };
 
-  useEffect(()=>{
+  const handleToggleComplete = () => {
+    setCompleted(!completed);
+  };
+
+  useEffect(() => {
     const timeRemaining = thought.expiresAt - Date.now();
-    setTimeout(()=>{removeThought(thought.id)},timeRemaining);
-    return () => {
-    clearTimeout(36000000);
-    };
-  },[thought]);
+
+    if (timeRemaining > 0) {
+      const timeoutId = setTimeout(() => {
+        removeThought(thought.id);
+      }, timeRemaining);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [thought, removeThought]);
 
   return (
-    <li className="Thought">
-      <button
-        aria-label="Remove thought"
-        className="remove-button"
-        onClick={handleRemoveClick}
-      >
-        &times;
-      </button>
-      <div className="text">{thought.text}</div>
-    </li>
+    <div className='Thought-whole'>
+      <li className={`Thought ${completed ? 'completed' : ''}`}>
+        <div className="checkbox" onClick={handleToggleComplete}>
+        <div className={`circle ${completed ? 'completed' : ''}`}>
+            <FontAwesomeIcon icon={faCheck} />
+          </div>
+        </div>
+        <button
+          aria-label="Remove thought"
+          className="remove-button"
+          onClick={handleRemoveClick}
+        >
+          <FontAwesomeIcon icon={faTrash} />
+        </button>
+        <div className="text">
+          <p style={{ textDecoration: completed ? 'line-through' : 'none' }}>
+            {thought.text}
+          </p>
+        </div>
+      </li>
+    </div>
   );
 }
+
+export default Thought;

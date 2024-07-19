@@ -1,51 +1,100 @@
-import React, { useState } from 'react';
+import React ,{ useState }  from 'react';
 import ReactDOM from 'react-dom';
-import { AddThoughtForm } from './AddThoughtForm';
-import { Thought } from './Thought';
-import { generateId, getNewExpirationTime } from './utilities';
-import image from "./images/thinking-girl.png"
-import './style.css'
+import { BrowserRouter as BrowserRouter,Routes, Route, NavLink } from 'react-router-dom';
+import PersonalThoughts from './PersonalThoughts';
+import ProfessionalThoughts from './ProfessionalThoughts';
+import './style.css';
+import image from "./images/thinking-girl.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faList, faPen , faDotCircle } from '@fortawesome/free-solid-svg-icons';
 
 export default function App() {
-  const [thoughts, setThoughts] = useState([
-    {
-      id: generateId(),
-      text: 'This is a place for you to write your thoughts.',
-      expiresAt: getNewExpirationTime(),
-    },
-    {
-      id: generateId(),
-      text: "They'll be removed after 1 hour.",
-      expiresAt: getNewExpirationTime(),
-    },
-  ]);
+  const [personalThoughts, setPersonalThoughts] = useState([]);
+  const [professionalThoughts, setProfessionalThoughts] = useState([]);
 
-  const addThought=(thought)=>{
-    setThoughts(prev=>[thought, ...prev]);
-  }
+  const addPersonalThought = (thought) => {
+    setPersonalThoughts((prev) => [...prev, { id: Date.now(), text: thought, expiresAt: Date.now() + 15000 }]);
+  };
 
-const removeThought = (thoughtIdToRemove) => {
-  setThoughts((thoughts) =>
-    thoughts.filter((thought) => thought.id !== thoughtIdToRemove)
-  );
-};
+  const removePersonalThought = (id) => {
+    setPersonalThoughts((prev) => prev.filter((thought) => thought.id !== id));
+  };
 
-  return (
-    <div className="App">
+  const addProfessionalThought = (thought) => {
+    setProfessionalThoughts((prev) => [...prev, { id: Date.now(), text: thought, expiresAt: Date.now() + 15000 }]);
+  };
+
+  const removeProfessionalThought = (id) => {
+    setProfessionalThoughts((prev) => prev.filter((thought) => thought.id !== id));
+  };
+
+  const clearAllPersonalThoughts = () => {
+    setPersonalThoughts([]);
+  };
+
+  const clearAllProfessionalThoughts = () => {
+    setProfessionalThoughts([]);
+  };
+  return(
+  <BrowserRouter>
+  <div className="App">
       <header>
-        <h1>Passing Thoughts</h1>
-      </header>
+      <div className="header-icons">
+            <h1>To Do List</h1>
+            <div className='icons-only'>
+            <FontAwesomeIcon icon={faList} />
+            <FontAwesomeIcon icon={faPen} />
+            </div>
+          </div>
+        </header>
       <main>
-        <AddThoughtForm addThought={addThought} />
-        <ul className="thoughts">
-          {thoughts.map((thought) => (
-            <Thought key={thought.id} thought={thought}
-            removeThought={removeThought} />
-          ))}
-        </ul>
-        <img src={image} alt="thinking girl"/>
+      <nav className="nav-container">
+            <ul>
+              <li>
+                <NavLink 
+                  to="/personal" 
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                >{({ isActive }) => (
+                  <>
+                    {isActive && <FontAwesomeIcon icon={faDotCircle} className="nav-icon" />}
+                    Personal
+                  </>
+                )}
+                </NavLink>
+                
+              </li>
+              <li>
+                <NavLink 
+                  to="/professional" 
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                >
+                  {({ isActive }) => (
+                    <>
+                      {isActive && <FontAwesomeIcon icon={faDotCircle} className="nav-icon" />}
+                      professional
+                    </>
+                  )}
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+      <img src={image} alt="thinking girl"/>
       </main>
     </div>
+      <Routes>
+          <Route path="personal" element={<PersonalThoughts 
+          thoughts={personalThoughts}
+          addThought={addPersonalThought}
+          removeThought={removePersonalThought}
+          clearAllThoughts={clearAllPersonalThoughts}/>} />
+          <Route path="professional" element={<ProfessionalThoughts 
+                thoughts={professionalThoughts}
+                addThought={addProfessionalThought}
+                removeThought={removeProfessionalThought}
+                clearAllThoughts={clearAllProfessionalThoughts} />} />
+      </Routes>
+    
+    </BrowserRouter>
   );
 }
 
