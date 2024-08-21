@@ -13,8 +13,8 @@ export default function App() {
   const [professionalThoughts, setProfessionalThoughts] = useState([]);
 
   const addPersonalThought = (thought) => {
-    setPersonalThoughts((prev) => [...prev, { id: Date.now(), text: thought, expiresAt: Date.now() + 15000 }]);
-  };
+    setPersonalThoughts((prev) => [...prev, { id: Date.now(), text: thought }]);
+};
 
   const removePersonalThought = (id) => {
     setPersonalThoughts((prev) => prev.filter((thought) => thought.id !== id));
