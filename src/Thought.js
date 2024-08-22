@@ -13,27 +13,25 @@ const Thought = ({ thought, removeThought }) => {
     setCompleted(!completed);
   };
 
-  useEffect(() => {
-    const timeRemaining = thought.expiresAt - Date.now();
-
-    if (timeRemaining > 0) {
-      const timeoutId = setTimeout(() => {
-        removeThought(thought.id);
-      }, timeRemaining);
-
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }
-  }, [thought, removeThought]);
+  
 
   return (
     <div className='Thought-whole'>
       <li className={`Thought ${completed ? 'completed' : ''}`}>
         <div className="checkbox" onClick={handleToggleComplete}>
-        <div className={`circle ${completed ? 'completed' : ''}`}>
+          <div className={`circle ${completed ? 'completed' : ''}`}>
             <FontAwesomeIcon icon={faCheck} />
           </div>
+        </div>
+        <div className="text">
+          <p style={{ textDecoration: completed ? 'line-through' : 'none' }}>
+            {thought.text}
+          </p>
+          {thought.dueDate && (
+            <p className="due-date">
+              Due by: {new Date(thought.dueDate).toLocaleDateString()}
+            </p>
+          )}
         </div>
         <button
           aria-label="Remove thought"
@@ -42,14 +40,10 @@ const Thought = ({ thought, removeThought }) => {
         >
           <FontAwesomeIcon icon={faTrash} />
         </button>
-        <div className="text">
-          <p style={{ textDecoration: completed ? 'line-through' : 'none' }}>
-            {thought.text}
-          </p>
-        </div>
       </li>
     </div>
   );
 }
 
 export default Thought;
+

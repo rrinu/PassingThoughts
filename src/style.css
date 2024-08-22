@@ -38,8 +38,7 @@ input[type='submit']{
 
 .App {
   margin: auto;
-  max-width: 600px;
-  width: 95%;
+  width: 46%;
   
 }
 
@@ -115,7 +114,8 @@ nav a.active .icon {
 
 .AddThoughtForm {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  padding-right: 1rem;
 }
 
 .AddThoughtForm input {
@@ -129,27 +129,82 @@ nav a.active .icon {
   margin-right: 0.5rem;
 }
 
+.AddThoughtForm input[type='date'] {
+  flex-grow: 1;
+  margin-right: 0.5rem;
+}
+.date-input {
+  /* Hide default text */
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  width: 5em; /* Adjust width as needed */
+  height: 4em; /* Adjust height as needed */
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em; /* Adjust size as needed */
+  background-position: center;
+}
+
+
+
+
 .thoughts {
   list-style-type: none;
   padding: 0;
+  margin: 10px;
 }
 
-.Thought-whole{
-  border:1px solid black;
+.Thought-whole {
+  border: 1px solid black;
   border-radius: 15px;
   border-style: inset;
   margin-bottom: 5px;
-  background-color: rgb(200, 244, 230)
+  background-color: rgb(200, 244, 230);
+  padding: 10px;
+  position: relative; /* Enables absolute positioning of the due date */
 }
 
+.Thought {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensures elements are spaced out */
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.text {
+  flex-grow: 1; /* Allow the text to take up remaining space */
+  margin-right: 10px; /* Space between text and remove button */
+}
+
+.due-date {
+  position: absolute;
+  top: 10px; /* Positions due date at the top */
+  right: 40px; /* Adds space to prevent overlap with trash icon */
+  font-size: 0.8em;
+  color: #555;
+}
 
 .Thought .remove-button {
   font-size: 70%;
-  float: right;
-  border: 0;
-  border-radius: 3px;
   background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 5px;
+  color: #888;
+  position: absolute;
+  top: 10px; /* Aligns the trash icon with the due date */
+  right: 10px; /* Keeps the trash icon in the top right corner */
 }
+
+.fa-trash {
+  font-size: 1.2em;
+}
+
+
 
 .Thought .remove-button:hover {
   color: rgb(246, 109, 109);

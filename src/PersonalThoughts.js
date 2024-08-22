@@ -13,16 +13,17 @@ const PersonalThoughts = ({ thoughts, addThought, removeThought, clearAllThought
         <AddThoughtForm addThought={addThought} />
         <ul className="thoughts">
           {thoughts.map((thought) => (
-            <Thought key={thought.id} thought={thought}
-            removeThought={removeThought} />
+            <Thought key={thought.id} thought={thought} removeThought={removeThought} />
           ))}
         </ul>
         {thoughts.length > 0 && (
           <button className="clear-all-button" onClick={clearAllThoughts}>
-            <FontAwesomeIcon icon={faTrashAlt} /> Clear All Tasks</button>
+            <FontAwesomeIcon icon={faTrashAlt} /> Clear All Tasks
+          </button>
         )}
       </main>
     </div>
   );
-}
+};
+
 export default PersonalThoughts;

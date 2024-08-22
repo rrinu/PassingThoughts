@@ -12,9 +12,9 @@ export default function App() {
   const [personalThoughts, setPersonalThoughts] = useState([]);
   const [professionalThoughts, setProfessionalThoughts] = useState([]);
 
-  const addPersonalThought = (thought) => {
-    setPersonalThoughts((prev) => [...prev, { id: Date.now(), text: thought }]);
-};
+  const addPersonalThought = (thought, dueDate) => {
+    setPersonalThoughts((prev) => [...prev, { id: Date.now(), text: thought, dueDate }]);
+  };
 
   const removePersonalThought = (id) => {
     setPersonalThoughts((prev) => prev.filter((thought) => thought.id !== id));
@@ -71,7 +71,7 @@ export default function App() {
                   {({ isActive }) => (
                     <>
                       {isActive && <FontAwesomeIcon icon={faDotCircle} className="nav-icon" />}
-                      professional
+                      Professional
                     </>
                   )}
                 </NavLink>
