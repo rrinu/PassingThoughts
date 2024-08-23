@@ -132,17 +132,19 @@ nav a.active .icon {
 .AddThoughtForm input[type='date'] {
   flex-grow: 1;
   margin-right: 0.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 .date-input {
-  /* Hide default text */
   background: none;
   border: none;
   padding: 0;
   outline: none;
-  width: 5em; /* Adjust width as needed */
-  height: 4em; /* Adjust height as needed */
+  width: 5em; 
+  height: 4em; 
   background-repeat: no-repeat;
-  background-size: 1.5em 1.5em; /* Adjust size as needed */
+  background-size: 1.5em 1.5em; 
   background-position: center;
 }
 
@@ -162,13 +164,13 @@ nav a.active .icon {
   margin-bottom: 5px;
   background-color: rgb(200, 244, 230);
   padding: 10px;
-  position: relative; /* Enables absolute positioning of the due date */
+  position: relative;
 }
 
 .Thought {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Ensures elements are spaced out */
+  justify-content: space-between; 
 }
 
 .checkbox {
@@ -176,14 +178,14 @@ nav a.active .icon {
 }
 
 .text {
-  flex-grow: 1; /* Allow the text to take up remaining space */
-  margin-right: 10px; /* Space between text and remove button */
+  flex-grow: 1; 
+  margin-right: 10px; 
 }
 
 .due-date {
   position: absolute;
-  top: 10px; /* Positions due date at the top */
-  right: 40px; /* Adds space to prevent overlap with trash icon */
+  top: 10px; 
+  right: 40px; 
   font-size: 0.8em;
   color: #555;
 }
@@ -196,8 +198,8 @@ nav a.active .icon {
   padding: 5px;
   color: #888;
   position: absolute;
-  top: 10px; /* Aligns the trash icon with the due date */
-  right: 10px; /* Keeps the trash icon in the top right corner */
+  top: 10px; 
+  right: 10px; 
 }
 
 .fa-trash {
@@ -240,11 +242,11 @@ nav a.active .icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px; /* Adjust size as needed */
-  height: 24px; /* Adjust size as needed */
+  width: 24px; 
+  height: 24px; 
   border-radius: 50%;
-  border: 1px solid #055016; /* Border color */
-  transition: background-color 0.3s ease; /* Smooth transition */
+  border: 1px solid #055016;
+  transition: background-color 0.3s ease; 
 }
 
 
