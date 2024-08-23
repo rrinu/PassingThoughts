@@ -132,9 +132,6 @@ nav a.active .icon {
 .AddThoughtForm input[type='date'] {
   flex-grow: 1;
   margin-right: 0.5rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
 }
 .date-input {
   background: none;
@@ -281,24 +278,34 @@ nav ul li a:hover {
 
 @media screen and (max-width: 1023px) {
  .App{
-  width:75vw;
+  width:60vw;
  }
- input[type='date']::-webkit-inner-spin-button,
-input[type='date']::-webkit-calendar-picker-indicator {
-  display: block;
-  color: transparent;
+ .date-input {
+  position: relative;
+  color: transparent; 
+  text-align: center;
 }
 
-input[type='date']::before {
-  content: attr(placeholder);
-  color: #aaa;
+.date-input::before {
+  content: "Due on Date";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #333; 
+  padding-left: 10px;
+  font-size: 1rem; 
+  pointer-events: none;
 }
 
-input[type='date']:focus::before,
-input[type='date']:valid::before {
-  content: '';
+.date-input:focus::before {
+  content: "";
 }
 
+.date-input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+ 
 }
 
 
