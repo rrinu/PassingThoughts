@@ -283,6 +283,22 @@ nav ul li a:hover {
  .App{
   width:75vw;
  }
+ input[type='date']::-webkit-inner-spin-button,
+input[type='date']::-webkit-calendar-picker-indicator {
+  display: block;
+  color: transparent;
+}
+
+input[type='date']::before {
+  content: attr(placeholder);
+  color: #aaa;
+}
+
+input[type='date']:focus::before,
+input[type='date']:valid::before {
+  content: '';
+}
+
 }
 
 
